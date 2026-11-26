@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dashboard Guru: Misi Pak Ali</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@500;700;800&display=swap">
+<style>
+:root{--night:#0b0e22;--deep:#151a3a;--panel:#1c2248;--line:#3a4380;--ink:#f4ecd6;--muted:#a9b0d8;--lamp:#ffcf4a;--lamp-deep:#e59a1a;--ok:#5fd68a;--bad:#ff6f61;--blue:#6cb6ff;
+  --font-display:'Press Start 2P',ui-monospace,Menlo,Consolas,monospace;--font-body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--night);color:var(--ink);font:16px/1.5 var(--font-body);padding:16px max(16px,env(safe-area-inset-right)) 40px max(16px,env(safe-area-inset-left))}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.5;margin:0}
+h1{font-size:clamp(13px,2.4vw,18px);color:var(--lamp);text-shadow:3px 3px 0 #000}
+h2{font-size:12px;color:var(--lamp);margin:0 0 12px}
+h3{font-size:10px;color:var(--ink);margin:0 0 8px}
+[hidden]{display:none!important}
+.btn{font-family:var(--font-display);font-size:10px;line-height:1.4;color:#1b1203;background:var(--lamp);border:3px solid #1b1203;padding:9px 12px;cursor:pointer;box-shadow:0 4px 0 var(--lamp-deep),0 4px 0 3px #1b1203;min-height:38px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--lamp-deep),0 1px 0 3px #1b1203}
+.btn.alt{background:var(--panel);color:var(--ink);border-color:var(--line);box-shadow:0 4px 0 #0d1130,0 4px 0 3px var(--line)}
+.btn.on{border-color:var(--ok);color:var(--ok)}
+.btn.danger{background:#4a1d27;color:#ffd6d1;border-color:var(--bad);box-shadow:0 4px 0 #2a0f15,0 4px 0 3px var(--bad)}
+:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.panel{background:var(--panel);border:3px solid var(--line);box-shadow:5px 5px 0 rgba(0,0,0,.45);padding:16px;margin-bottom:16px;min-width:0}
+input,select{font:700 15px var(--font-body);background:var(--night);color:var(--ink);border:3px solid var(--line);padding:8px 10px;min-height:42px;max-width:100%}
+input:focus,select:focus{border-color:var(--lamp);outline:none}
+label.f{display:grid;gap:4px;font-family:var(--font-display);font-size:9px;color:var(--lamp)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.top{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px}
+.muted{color:var(--muted);font-size:14px}
+.err{color:var(--bad);font-weight:800;min-height:1.4em;margin:0}
+.demo{background:#3a2d0b;border:3px solid var(--lamp);padding:8px 12px;font-weight:800;margin-bottom:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.tabs .btn[aria-selected="true"]{background:var(--lamp);color:#1b1203;border-color:#1b1203;box-shadow:0 4px 0 var(--lamp-deep),0 4px 0 3px #1b1203}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.card{background:var(--deep);border:3px solid var(--line);padding:12px}
+.card small{display:block;font-family:var(--font-display);font-size:8px;color:var(--muted);line-height:1.6}
+.card b{display:block;font:800 26px var(--font-body);color:var(--lamp);font-variant-numeric:tabular-nums}
+.card span{font-size:13px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:16px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:2px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--deep);color:var(--lamp);font-family:var(--font-display);font-size:8px;font-weight:400;line-height:1.6;white-space:nowrap}
+th.s{cursor:pointer}th.s:hover{color:#fff}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.click{cursor:pointer}tr.click:hover td{background:#252c5c}
+.stack{display:flex;height:18px;border:2px solid var(--line);background:var(--night);min-width:120px}
+.stack i{display:block;height:100%}
+.c-M{background:var(--ok)}.c-B{background:var(--blue)}.c-R{background:var(--lamp)}.c-S{background:var(--bad)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:8px 0 0}
+.legend i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;border:1px solid #000}
+.ob{display:grid;grid-template-columns:30px minmax(0,1fr) 70px;gap:8px;align-items:center;margin:6px 0;font-size:14px}
+.ob .ch{font-family:var(--font-display);font-size:9px;width:26px;height:26px;display:grid;place-items:center;background:var(--night);border:2px solid var(--line)}
+.ob.ok .ch{border-color:var(--ok);color:var(--ok)}
+.ob .tx{min-width:0}
+.ob .tr{height:12px;background:var(--night);border:2px solid var(--line);margin-top:3px}
+.ob .tr i{display:block;height:100%;background:#7c84b8}
+.ob.ok .tr i{background:var(--ok)}.ob.top .tr i{background:var(--bad)}
+.ob .pc{text-align:right;font-variant-numeric:tabular-nums;font-weight:800}
+.q{font-weight:800;margin:0 0 6px}
+.tag{display:inline-block;font-family:var(--font-display);font-size:8px;padding:4px 6px;border:2px solid var(--line);margin:0 4px 4px 0;line-height:1.4}
+.tag.M{border-color:var(--ok);color:var(--ok)}.tag.B{border-color:var(--blue);color:var(--blue)}.tag.R{border-color:var(--lamp);color:var(--lamp)}.tag.S{border-color:var(--bad);color:var(--bad)}.tag.X{color:var(--muted)}
+.mini{display:flex;gap:4px;flex-wrap:nowrap}
+.mini span{display:inline-grid;place-items:center;min-width:30px;height:24px;padding:0 3px;font-size:11px;font-weight:800;border:2px solid var(--line);background:var(--night)}
+.mini .M{border-color:var(--ok);background:#16402e}.mini .B{border-color:var(--blue);background:#16304e}.mini .R{border-color:var(--lamp);background:#3b3216}.mini .S{border-color:var(--bad);background:#4a1d27}
+.warn{border-left:6px solid var(--bad);padding-left:10px}
+.feed{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.feed li{background:var(--deep);border:3px solid var(--line);padding:8px 12px;display:grid;grid-template-columns:92px minmax(0,1fr) auto;gap:10px;align-items:center}
+.feed li.ok{border-color:#2f6b45}.feed li.no{border-color:#6a2a33}
+.feed time{font-size:12px;color:var(--muted)}
+.pill{font-family:var(--font-display);font-size:8px;padding:4px 6px}
+.pill.ok{color:var(--ok)}.pill.no{color:var(--bad)}
+.login{max-width:520px;margin:6vh auto 0}
+.login form{display:grid;gap:14px}
+.detail{border-color:var(--lamp)}
+.lv-h{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;margin:16px 0 6px}
+@media(max-width:600px){.panel.row label.f,.panel.row select,.panel.row input{width:100%}label.f{min-width:0}.feed li{grid-template-columns:1fr}.ob{grid-template-columns:28px minmax(0,1fr) 56px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- LOG MASUK -->
+<section id="v-login" class="login panel">
+  <h1>DASHBOARD GURU</h1>
+  <p class="muted">Misi Pak Ali: Cerahkan Kampung Pisang. Halaman ini untuk guru sahaja. Nama pengguna dan kata laluan disemak oleh pelayan Google anda dan tidak disimpan dalam fail ini.</p>
+  <form id="loginForm" autocomplete="off">
+    <label class="f" id="urlWrap">URL WEB APP APPS SCRIPT<input id="url" type="url" placeholder="https://script.google.com/macros/s/.../exec"></label>
+    <label class="f">NAMA PENGGUNA<input id="usr" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Contoh: aminah"></label>
+    <label class="f">KATA LALUAN<input id="pw" type="password" autocomplete="current-password"></label>
+    <p class="err" id="loginErr" role="alert"></p>
+    <div class="row"><button class="btn" type="submit" id="loginBtn">MASUK</button><button class="btn alt" type="button" id="demoBtn">LIHAT DEMO</button><a class="btn alt" href="index.html">KE PERMAINAN</a></div>
+  </form>
+</section>
+
+<!-- DASHBOARD -->
+<section id="v-app" hidden>
+  <div class="top">
+    <div><h1>DASHBOARD GURU</h1><div class="muted" id="status"></div></div>
+    <div class="row">
+      <button class="btn alt" id="refreshBtn" type="button">MUAT SEMULA</button>
+      <button class="btn alt" id="autoBtn" type="button" aria-pressed="false">AUTO: OFF</button>
+      <button class="btn alt" id="csvBtn" type="button">CSV</button>
+      <button class="btn alt" id="logoutBtn" type="button">KELUAR</button>
+    </div>
+  </div>
+  <div class="demo" id="demoBar" hidden>MOD DEMO: data rekaan untuk melihat rupa dashboard. Log masuk untuk melihat data sebenar pelajar.</div>
+  <div class="panel row" style="padding:12px">
+    <label class="f">KELAS<select id="fKelas"><option value="">Semua kelas</option></select></label>
+    <label class="f">CARI NAMA<input id="fNama" type="search" placeholder="Taip nama"></label>
+    <label class="f">REKOD<select id="fSesi"><option value="latest">Sesi terkini setiap pelajar</option><option value="all">Semua sesi (termasuk sebelum MAIN SEMULA)</option></select></label>
+  </div>
+  <div class="tabs" role="tablist">
+    <button class="btn alt" role="tab" data-tab="sum" aria-selected="true">RINGKASAN</button>
+    <button class="btn alt" role="tab" data-tab="q" aria-selected="false">ANALISIS SOALAN</button>
+    <button class="btn alt" role="tab" data-tab="stu" aria-selected="false">PELAJAR</button>
+    <button class="btn alt" role="tab" data-tab="feed" aria-selected="false">AKTIVITI TERKINI</button>
+  </div>
+  <div id="t-sum"></div>
+  <div id="t-q" hidden></div>
+  <div id="t-stu" hidden></div>
+  <div id="t-feed" hidden></div>
+</section>
+</div>
+
+<script>
+/* =====================================================================
+   TETAPAN GURU: tampal URL Web App Google Apps Script yang SAMA seperti dalam index.html.
+   Jika dibiarkan kosong, guru boleh menampal URL pada skrin log masuk.
+   ===================================================================== */
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxOBv8BS50mYizqVHIypCBidWcfrpcoTVZk1w3b2jfjVAA1IWbk2xtuyCYdGqeYQjqO-Q/exec";
+
+/* Bank soalan (disalin daripada permainan) */
+const QB = [{"t":"Rumah Pak Ali","f":"Litar elektrik lengkap dan aliran arus elektrik","p":{"x":"Soalan 1: Apakah yang akan berlaku kepada mentol apabila suis ditutup?","o":["Mentol tidak menyala kerana suis telah memutuskan litar.","Mentol menyala kerana litar elektrik telah lengkap.","Mentol menyala seketika kemudian terpadam kerana arus elektrik habis.","Mentol tidak menyala kerana arus elektrik perlu menunggu sehingga bateri membekalkan tenaga."],"a":1},"e":[{"x":"Soalan 2: Mengapakah mentol menyala apabila suis ditutup?","o":["Bateri menghantar elektron terus kepada mentol sahaja.","Suis menghasilkan tenaga elektrik untuk menyalakan mentol.","Suis melengkapkan laluan litar dan membolehkan arus elektrik mengalir.","Elektron berkumpul di dalam mentol sehingga menghasilkan cahaya."],"a":2}]},{"t":"Rumah Pakcik Hassan","f":"Keabadian arus dalam litar bersiri","p":{"x":"Soalan 1: Apakah bacaan ammeter A, B dan C?","o":["A lebih besar daripada B, manakala B lebih besar daripada C.","A, B dan C menunjukkan bacaan arus yang sama.","A lebih kecil daripada B dan C.","A dan B sama tetapi C menunjukkan bacaan sifar."],"a":1},"e":[{"x":"Soalan 2: Mengapakah bacaan arus elektrik adalah sama pada ketiga-tiga kedudukan?","o":["Mentol tidak menggunakan tenaga elektrik.","Arus elektrik yang digunakan oleh mentol akan digantikan semula oleh bateri.","Cas elektrik tidak digunakan atau dimusnahkan apabila melalui mentol, walaupun tenaga elektrik dipindahkan kepada mentol.","Bateri hanya membekalkan arus elektrik pada satu bahagian litar sahaja."],"a":2}]},{"t":"Lampu Jalan","f":"Perbandingan kecerahan mentol dalam litar bersiri dan selari","p":{"x":"Soalan 1: Apakah perbandingan kecerahan mentol yang paling tepat?","o":["Kedua-dua mentol dalam litar bersiri lebih terang.","Kedua-dua mentol dalam litar selari lebih terang.","Kecerahan semua mentol adalah sama dalam kedua-dua litar.","Hanya satu mentol dalam litar selari akan menyala."],"a":1},"e":[{"x":"Soalan 2: Mengapakah mentol dalam litar selari lebih terang berbanding mentol dalam litar bersiri?","o":["Arus elektrik bertambah apabila melalui setiap mentol dalam litar selari.","Setiap mentol dalam litar selari menerima beza keupayaan yang sama dengan voltan bateri.","Mentol dalam litar selari menghasilkan tenaga elektrik sendiri.","Arus elektrik dibahagikan secara sama rata dan menyebabkan setiap mentol menerima tenaga yang lebih banyak tanpa mengira rintangan."],"a":1}]},{"t":"Klinik Mimi","f":"Rintangan litar dan arus elektrik","p":{"x":"Soalan 1: Apakah yang berlaku kepada arus apabila rintangan litar ditingkatkan, dengan voltan bateri dikekalkan?","o":["Arus meningkat kerana bateri membekalkan lebih banyak arus.","Arus kekal sama kerana bateri membekalkan arus yang tetap.","Arus berkurang kerana rintangan litar meningkat.","Arus menjadi sifar kerana bateri tidak lagi membekalkan voltan."],"a":2},"e":[{"x":"Soalan 2: Apakah kuantiti elektrik yang dibekalkan oleh bateri untuk membolehkan arus mengalir dalam litar?","o":["Arus elektrik yang sentiasa tetap.","Beza keupayaan yang membekalkan tenaga kepada setiap unit cas elektrik.","Rintangan elektrik yang menentukan kadar aliran cas.","Elektron yang digunakan sepenuhnya oleh mentol."],"a":1}]},{"t":"SK Parit Keroma","f":"Hubungan antara arus, voltan dan kecerahan mentol","p":{"x":"Soalan 1: Apakah yang berlaku kepada arus dan kecerahan mentol apabila voltan ditingkatkan?","o":["Arus berkurang dan mentol menjadi malap.","Arus meningkat dan mentol menjadi lebih terang.","Arus kekal sama dan mentol menjadi lebih terang.","Arus dan kecerahan mentol tidak berubah."],"a":1},"e":[{"x":"Soalan 2: Apakah kuantiti elektrik yang dibekalkan oleh bateri untuk membolehkan arus mengalir dalam litar?","o":["Arus elektrik yang sentiasa tetap.","Beza keupayaan yang membekalkan tenaga kepada setiap unit cas elektrik.","Rintangan elektrik yang menentukan kadar aliran cas.","Elektron yang digunakan sepenuhnya oleh mentol."],"a":1}]},{"t":"Kilang Padi Sapi","f":"Rintangan, arus dan kecerahan mentol dalam litar bersiri","p":{"x":"Soalan 1: Apakah yang akan berlaku kepada kecerahan mentol apabila rintangan meningkat?","o":["Mentol menjadi lebih terang kerana rintangan meningkat.","Mentol menjadi lebih malap kerana arus berkurang.","Kecerahan mentol kekal sama kerana bateri membekalkan arus tetap.","Mentol menjadi lebih terang kerana elektron bergerak lebih perlahan."],"a":1},"e":[{"x":"Soalan 2: Mengapakah mentol menjadi lebih malap apabila rintangan dalam litar bersiri ditingkatkan?","o":["Rintangan yang tinggi menyebabkan elektron berhenti bergerak sepenuhnya.","Rintangan yang tinggi mengurangkan arus dalam litar, lalu mengurangkan kadar pemindahan tenaga kepada mentol.","Rintangan yang tinggi menyebabkan bateri kehilangan voltannya serta-merta.","Rintangan yang tinggi menyebabkan mentol menerima lebih banyak elektron."],"a":1}]}];
+const N = QB.length, L5 = 'ABCDE';
+const $ = id => document.getElementById(id);
+const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const SS = {get(k){try{return sessionStorage.getItem(k)}catch(e){return null}}, set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}}, del(k){try{sessionStorage.removeItem(k)}catch(e){}}};
+const LS = {get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const PAT = {M:'Menguasai konsep', B:'Berkembang (ramalan salah, Explain betul)', R:'Kefahaman rendah', S:'Miskonsepsi'};
+const NOTE = {M:'Anda menguasai konsep dengan baik.', R:'Aras kefahaman masih rendah dan berkemungkinan mengalami miskonsepsi.', S:'Anda mengalami miskonsepsi.', B:'Ramalan awal kurang tepat, tetapi pemerhatian membantu membina penjelasan yang betul.'};
+
+let RAW = [], DEMO = false, KEY = '', USER = '', URL_ = '', tab = 'sum', sortBy = {k:'score', d:-1}, openSid = null, autoT = null, lastLoad = null;
+
+/* ---------- Log masuk ---------- */
+URL_ = SHEET_URL || LS.get('pakali.adminUrl') || '';
+$('url').value = URL_;
+if (SHEET_URL) $('urlWrap').hidden = true;
+$('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  URL_ = (SHEET_URL || $('url').value).trim(); KEY = $('pw').value; USER = $('usr').value.trim().toLowerCase();
+  if (!USER) { $('loginErr').textContent = 'Masukkan nama pengguna.'; return; }
+  if (!/^https:\/\/script\.google(usercontent)?\.com\//.test(URL_)) { $('loginErr').textContent = 'Masukkan URL Web App Apps Script yang sah (bermula dengan https://script.google.com/).'; return; }
+  if (!KEY) { $('loginErr').textContent = 'Masukkan kata laluan admin.'; return; }
+  $('loginBtn').disabled = true; $('loginErr').textContent = 'Menyemak...';
+  const r = await fetchData();
+  $('loginBtn').disabled = false;
+  if (r === true) { if (!SHEET_URL) LS.set('pakali.adminUrl', URL_); SS.set('pakali.adminKey', KEY); SS.set('pakali.adminUser', USER); $('pw').value = ''; $('loginErr').textContent = ''; enter(false); }
+  else $('loginErr').textContent = r;
+});
+$('demoBtn').onclick = () => { RAW = demoRows(); DEMO = true; lastLoad = new Date(); enter(true); };
+$('logoutBtn').onclick = () => { SS.del('pakali.adminKey'); SS.del('pakali.adminUser'); KEY = ''; USER = ''; RAW = []; DEMO = false; stopAuto(); $('v-app').hidden = true; $('v-login').hidden = false; };
+
+async function post(body) {
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 25000);
+  try { const r = await fetch(URL_, {method:'POST', body: JSON.stringify(body), signal: ctl.signal}); return await r.json(); }
+  finally { clearTimeout(t); }
+}
+async function fetchData() {
+  try {
+    const j = await post({action:'admin', user: USER, key: KEY});
+    if (j && j.ok) { RAW = (j.rows || []).map(norm).filter(Boolean); lastLoad = new Date(); return true; }
+    const m = {auth:'Nama pengguna atau kata laluan salah.', locked:'Terlalu banyak cubaan salah. Cuba lagi selepas 10 minit.', nopassword:'Akaun guru belum ditetapkan dalam Script Properties (lihat panduan, Langkah 2).'};
+    return m[j && j.error] || 'Pelayan memberi ralat: ' + esc((j && (j.detail || j.error)) || 'tidak diketahui');
+  } catch (e) { return 'Tidak dapat menghubungi pelayan. Semak URL Apps Script dan sambungan internet.'; }
+}
+function enter(demo) {
+  DEMO = demo; $('demoBar').hidden = !demo; $('v-login').hidden = true; $('v-app').hidden = false;
+  $('refreshBtn').hidden = demo; $('autoBtn').hidden = demo; render();
+}
+$('refreshBtn').onclick = refresh;
+async function refresh() {
+  if (DEMO) return; $('status').textContent = 'Memuatkan...';
+  const r = await fetchData();
+  if (r !== true) { $('status').textContent = r; if (/salah|Terlalu/.test(r)) $('logoutBtn').click(); return; }
+  render();
+}
+function stopAuto() { clearInterval(autoT); autoT = null; $('autoBtn').textContent = 'AUTO: OFF'; $('autoBtn').classList.remove('on'); $('autoBtn').setAttribute('aria-pressed','false'); }
+$('autoBtn').onclick = () => { if (autoT) { stopAuto(); return; } autoT = setInterval(() => { if (!document.hidden) refresh(); }, 60000);
+  $('autoBtn').textContent = 'AUTO: 60s'; $('autoBtn').classList.add('on'); $('autoBtn').setAttribute('aria-pressed','true'); };
+
+/* ---------- Data ---------- */
+const B = v => v === true || v === 'TRUE' || v === 'true' || v === 1;
+function norm(r) {
+  if (!r || !r.id) return null;
+  const lv = +r.level; if (!(lv >= 1 && lv <= N)) return null;
+  return {id: String(r.id), t: new Date(r.masa || r.ts), sesi: String(r.sesi || ''), sid: String(r.idPelajar || r.sid || (r.nama + '|' + r.kelas)),
+    nama: String(r.nama || 'Pelajar'), kelas: String(r.kelas || '-'), level: lv, cubaan: +r.cubaan || 1,
+    pred: String(r.predict ?? r.pred ?? ''), predOk: B(r.predictBetul ?? r.predOk), obs: B(r.observe ?? r.obs),
+    exp: String(r.explain ?? r.exp ?? ''), expOk: B(r.explainBetul ?? r.expOk), hint: B(r.petunjuk), markah: +r.markah || 0, lulus: B(r.lulus), catatan: String(r.catatan || '')};
+}
+const pat = r => !r.obs ? 'X' : r.predOk ? (r.expOk ? 'M' : 'R') : (r.expOk ? 'B' : 'S');
+function filtered() {
+  const k = $('fKelas').value, q = $('fNama').value.trim().toLowerCase(), mode = $('fSesi').value;
+  let rows = RAW.slice();
+  if (mode === 'latest') {
+    const last = {};
+    rows.forEach(r => { if (!last[r.sid] || r.t > last[r.sid].t) last[r.sid] = r; });
+    rows = rows.filter(r => r.sesi === last[r.sid].sesi);
+  }
+  if (k) rows = rows.filter(r => r.kelas === k);
+  if (q) rows = rows.filter(r => r.nama.toLowerCase().includes(q));
+  return rows.sort((a, b) => a.t - b.t);
+}
+function students(rows) {
+  const M = {};
+  rows.forEach(r => {
+    const s = M[r.sid] || (M[r.sid] = {sid: r.sid, nama: r.nama, kelas: r.kelas, lv: Array.from({length: N}, () => []), last: r.t});
+    s.lv[r.level - 1].push(r); if (r.t > s.last) s.last = r.t; s.nama = r.nama;
+  });
+  return Object.values(M).map(s => {
+    let score = 0, done = 0, stars = 0, tries = 0;
+    s.L = s.lv.map(a => {
+      if (!a.length) return null;
+      const first = a[0], passed = a.filter(x => x.lulus), best = passed.length ? Math.max(...passed.map(x => x.markah)) : 0;
+      tries += a.length; if (passed.length) { done++; score += best; stars += best >= 10 ? 3 : best >= 9 ? 2 : 1; }
+      return {first, n: a.length, passed: passed.length > 0, best, p: pat(first), fails: a.filter(x => !x.lulus).length};
+    });
+    return Object.assign(s, {score, done, stars, tries});
+  });
+}
+function fmtT(d) { if (!(d instanceof Date) || isNaN(d)) return '-'; return d.toLocaleString('ms-MY', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'}); }
+
+/* ---------- Paparan ---------- */
+document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { tab = b.dataset.tab;
+  document.querySelectorAll('[data-tab]').forEach(x => x.setAttribute('aria-selected', String(x === b))); render(); });
+['fKelas', 'fNama', 'fSesi'].forEach(id => $(id).addEventListener('input', render));
+
+function render() {
+  const kelasList = [...new Set(RAW.map(r => r.kelas))].sort((a, b) => a.localeCompare(b, 'ms', {numeric: true}));
+  const cur = $('fKelas').value;
+  $('fKelas').innerHTML = '<option value="">Semua kelas</option>' + kelasList.map(k => '<option' + (k === cur ? ' selected' : '') + '>' + esc(k) + '</option>').join('');
+  const rows = filtered(), S = students(rows);
+  $('status').textContent = (DEMO ? 'Data demo' : 'Log masuk sebagai ' + USER + ' · dikemas kini ' + fmtT(lastLoad)) + ' · ' + RAW.length + ' rekod · ' + new Set(RAW.map(r => r.sid)).size + ' pelajar';
+  ['sum', 'q', 'stu', 'feed'].forEach(t => $('t-' + t).hidden = t !== tab);
+  if (tab === 'sum') $('t-sum').innerHTML = viewSum(rows, S);
+  if (tab === 'q') $('t-q').innerHTML = viewQ(rows, S);
+  if (tab === 'stu') { $('t-stu').innerHTML = viewStu(S); bindStu(S); }
+  if (tab === 'feed') $('t-feed').innerHTML = viewFeed(rows);
+}
+const empty = '<div class="panel"><p class="muted" style="margin:0">Belum ada rekod untuk tapisan ini. Rekod muncul selepas pelajar menjawab soalan Explain dalam permainan.</p></div>';
+const card = (l, v, s) => '<div class="card"><small>' + l + '</small><b>' + v + '</b>' + (s ? '<span>' + s + '</span>' : '') + '</div>';
+const pct = (a, b) => b ? Math.round(100 * a / b) : 0;
+function stackBar(c, tot) { return '<div class="stack" title="' + ['M','B','R','S'].map(k => PAT[k] + ': ' + (c[k] || 0)).join(' | ') + '">' + ['M','B','R','S'].map(k => '<i class="c-' + k + '" style="width:' + pct(c[k] || 0, tot) + '%"></i>').join('') + '</div>'; }
+const legend = '<div class="legend">' + ['M','B','R','S'].map(k => '<span><i class="c-' + k + '"></i>' + PAT[k] + '</span>').join('') + '</div>';
+
+function viewSum(rows, S) {
+  if (!rows.length) return empty;
+  const avg = S.length ? (S.reduce((a, s) => a + s.score, 0) / S.length) : 0;
+  const firsts = S.flatMap(s => s.L.filter(Boolean).map(l => l.first));
+  let h = '<div class="cards">' + card('PELAJAR', S.length) + card('PURATA MARKAH', avg.toFixed(1), 'daripada 60') + card('TAMAT 6 LEVEL', S.filter(s => s.done === N).length, pct(S.filter(s => s.done === N).length, S.length) + '% pelajar')
+    + card('LULUS PERCUBAAN PERTAMA', pct(firsts.filter(r => r.lulus).length, firsts.length) + '%', firsts.length + ' level dicuba') + card('JUMLAH PERCUBAAN', rows.length) + '</div>';
+  h += '<div class="panel"><h2>PENGUASAAN KONSEP MENGIKUT LEVEL</h2><p class="muted" style="margin:0 0 10px">Berdasarkan percubaan pertama setiap pelajar (Predict, Observe, Explain).</p><div class="tw"><table><thead><tr><th>Level</th><th>Dicuba</th><th>Lulus</th><th>Purata percubaan</th><th style="min-width:180px">Pola POE</th><th>Miskonsepsi</th></tr></thead><tbody>';
+  let worst = null;
+  QB.forEach((q, i) => {
+    const L = S.map(s => s.L[i]).filter(Boolean), c = {};
+    L.forEach(l => c[l.p] = (c[l.p] || 0) + 1);
+    const ms = pct(c.S || 0, L.length);
+    if (L.length && (!worst || ms > worst.ms)) worst = {i, ms};
+    h += '<tr><td><b>Level ' + (i + 1) + '</b><br><span class="muted">' + esc(q.t) + '</span></td><td class="n">' + L.length + '</td><td class="n">' + L.filter(l => l.passed).length + ' (' + pct(L.filter(l => l.passed).length, L.length) + '%)</td><td class="n">' + (L.length ? (L.reduce((a, l) => a + l.n, 0) / L.length).toFixed(1) : '-') + '</td><td>' + (L.length ? stackBar(c, L.length) : '<span class="muted">-</span>') + '</td><td class="n" style="color:' + (ms >= 30 ? 'var(--bad)' : 'inherit') + '">' + (L.length ? ms + '%' : '-') + '</td></tr>';
+  });
+  h += '</tbody></table></div>' + legend + '</div>';
+  const watch = S.map(s => { const stuck = s.L.map((l, i) => l && !l.passed && l.fails >= 2 ? i : -1).filter(i => i >= 0), mis = s.L.filter(l => l && l.p === 'S').length; return {s, stuck, mis}; })
+    .filter(w => w.stuck.length || w.mis >= 2).sort((a, b) => (b.stuck.length * 2 + b.mis) - (a.stuck.length * 2 + a.mis)).slice(0, 12);
+  h += '<div class="grid2"><div class="panel"><h2>PERLU PERHATIAN</h2>' + (watch.length ? '<div class="tw"><table><thead><tr><th>Pelajar</th><th>Sebab</th></tr></thead><tbody>' + watch.map(w => '<tr class="click" data-sid="' + esc(w.s.sid) + '"><td><b>' + esc(w.s.nama) + '</b><br><span class="muted">' + esc(w.s.kelas) + '</span></td><td>' + (w.stuck.length ? 'Gagal 2 kali atau lebih dan belum lulus: Level ' + w.stuck.map(i => i + 1).join(', ') + '. ' : '') + (w.mis >= 2 ? 'Miskonsepsi pada ' + w.mis + ' level.' : '') + '</td></tr>').join('') + '</tbody></table></div><p class="muted">Klik nama untuk melihat butiran.</p>' : '<p class="muted" style="margin:0">Tiada pelajar yang memerlukan perhatian khusus buat masa ini.</p>') + '</div>';
+  h += '<div class="panel"><h2>CADANGAN PDPC</h2>' + (worst && worst.ms > 0 ? '<p>Miskonsepsi paling tinggi berlaku pada <b>Level ' + (worst.i + 1) + ': ' + esc(QB[worst.i].t) + '</b> (' + worst.ms + '% pelajar). Lihat tab <b>ANALISIS SOALAN</b> untuk mengetahui pilihan salah yang paling popular dan bincangkan sebabnya di kelas.</p>' : '<p class="muted">Belum cukup data.</p>') + '<p class="muted">Fokus konsep: ' + (worst ? esc(QB[worst.i].f) : '-') + '</p></div></div>';
+  return h;
+}
+
+function optBlock(q, picks, label) {
+  const tot = picks.length, cnt = q.o.map((_, i) => picks.filter(p => p === L5[i]).length);
+  let topWrong = -1; cnt.forEach((c, i) => { if (i !== q.a && c > 0 && (topWrong < 0 || c > cnt[topWrong])) topWrong = i; });
+  let h = '<h3>' + label + '</h3><p class="q">' + esc(q.x) + '</p>';
+  q.o.forEach((t, i) => { const p = pct(cnt[i], tot);
+    h += '<div class="ob' + (i === q.a ? ' ok' : '') + (i === topWrong ? ' top' : '') + '"><span class="ch">' + L5[i] + '</span><div class="tx">' + esc(t) + (i === q.a ? ' <b style="color:var(--ok)">(jawapan betul)</b>' : '') + '<div class="tr"><i style="width:' + p + '%"></i></div></div><span class="pc">' + p + '%<br><small class="muted">' + cnt[i] + ' org</small></span></div>'; });
+  if (topWrong >= 0) h += '<p class="warn" style="margin:10px 0 0">Pilihan salah paling popular: <b>' + L5[topWrong] + '</b> (' + pct(cnt[topWrong], tot) + '%). Kemungkinan miskonsepsi: “' + esc(q.o[topWrong]) + '”</p>';
+  return h + '<p class="muted" style="margin:6px 0 14px">' + tot + ' jawapan.</p>';
+}
+let qMode = 'first';
+function viewQ(rows, S) {
+  if (!rows.length) return empty;
+  let h = '<div class="panel row" style="padding:10px"><span class="muted">Kira berdasarkan:</span><button class="btn ' + (qMode === 'first' ? '' : 'alt') + '" type="button" onclick="setQ(\'first\')">PERCUBAAN PERTAMA</button><button class="btn ' + (qMode === 'all' ? '' : 'alt') + '" type="button" onclick="setQ(\'all\')">SEMUA PERCUBAAN</button></div>';
+  QB.forEach((q, i) => {
+    const R = qMode === 'first' ? S.map(s => s.L[i] && s.L[i].first).filter(Boolean) : rows.filter(r => r.level === i + 1);
+    h += '<div class="panel"><div class="lv-h"><h2 style="margin:0">LEVEL ' + (i + 1) + ': ' + esc(q.t).toUpperCase() + '</h2><span class="muted">' + esc(q.f) + '</span></div>';
+    if (!R.length) { h += '<p class="muted">Belum ada jawapan.</p></div>'; return; }
+    h += '<div class="grid2"><div>' + optBlock(q.p, R.map(r => r.pred), 'PREDICT (tidak dimarkahkan)') + '</div><div>';
+    q.e.forEach((e, k) => { h += optBlock(e, R.map(r => (r.exp.split(';')[k] || '')), 'EXPLAIN' + (q.e.length > 1 ? ' ' + (k + 1) : '') + ' (menentukan lulus)'); });
+    h += '<p class="muted">Observe dilengkapkan: ' + R.filter(r => r.obs).length + ' / ' + R.length + '</p></div></div></div>';
+  });
+  return h;
+}
+window.setQ = m => { qMode = m; render(); };
+
+function viewStu(S) {
+  if (!S.length) return empty;
+  const cols = [['nama', 'Nama'], ['kelas', 'Kelas'], ['score', 'Markah'], ['done', 'Rumah'], ['tries', 'Percubaan'], ['last', 'Aktiviti terakhir']];
+  S.sort((a, b) => { const k = sortBy.k, x = a[k], y = b[k]; return (typeof x === 'string' ? x.localeCompare(y, 'ms', {numeric: true}) : (x - y)) * sortBy.d; });
+  let h = '<div id="detail"></div><div class="panel"><h2>SENARAI PELAJAR (' + S.length + ')</h2><p class="muted" style="margin:0 0 10px">Klik baris untuk melihat setiap percubaan pelajar. Kotak level menunjukkan pola POE percubaan pertama: P O E (✓ betul, ✗ salah) dan bilangan percubaan.</p><div class="tw"><table><thead><tr>'
+    + cols.map(c => '<th class="s" data-k="' + c[0] + '">' + c[1].toUpperCase() + (sortBy.k === c[0] ? (sortBy.d > 0 ? ' ▲' : ' ▼') : '') + '</th>').join('') + '<th>LEVEL 1 – 6</th></tr></thead><tbody>';
+  S.forEach(s => {
+    h += '<tr class="click" data-sid="' + esc(s.sid) + '"><td><b>' + esc(s.nama) + '</b></td><td>' + esc(s.kelas) + '</td><td class="n">' + s.score + ' / 60</td><td class="n">' + s.done + ' / ' + N + '</td><td class="n">' + s.tries + '</td><td class="n">' + fmtT(s.last) + '</td><td><div class="mini">'
+      + s.L.map((l, i) => l ? '<span class="' + l.p + '" title="Level ' + (i + 1) + ': ' + PAT[l.p] + ', ' + l.n + ' percubaan' + (l.passed ? ', lulus' : ', belum lulus') + '">' + (l.first.predOk ? '✓' : '✗') + (l.first.obs ? '✓' : '✗') + (l.first.expOk ? '✓' : '✗') + (l.n > 1 ? '×' + l.n : '') + '</span>' : '<span title="Level ' + (i + 1) + ': belum dicuba">–</span>').join('') + '</div></td></tr>';
+  });
+  return h + '</tbody></table></div>' + legend + '</div>';
+}
+function bindStu(S) {
+  document.querySelectorAll('#t-stu th.s').forEach(th => th.onclick = () => { const k = th.dataset.k; sortBy = sortBy.k === k ? {k, d: -sortBy.d} : {k, d: (k === 'nama' || k === 'kelas') ? 1 : -1}; render(); });
+  if (openSid) { const s = S.find(x => x.sid === openSid); if (s) showDetail(s); }
+}
+document.addEventListener('click', e => {
+  const tr = e.target.closest('tr.click[data-sid]'); if (!tr) return;
+  openSid = tr.dataset.sid;
+  if (tab !== 'stu') { tab = 'stu'; document.querySelectorAll('[data-tab]').forEach(x => x.setAttribute('aria-selected', String(x.dataset.tab === 'stu'))); render(); }
+  else { const s = students(filtered()).find(x => x.sid === openSid); if (s) showDetail(s); }
+  $('detail') && $('detail').scrollIntoView({behavior: 'smooth', block: 'start'});
+});
+const ans = (q, letter) => { const i = L5.indexOf(letter); return i >= 0 && q.o[i] ? letter + ': ' + q.o[i] : '-'; };
+function showDetail(s) {
+  let h = '<div class="panel detail"><div class="top" style="margin:0 0 8px"><div><h2 style="margin:0">' + esc(s.nama).toUpperCase() + '</h2><span class="muted">' + esc(s.kelas) + ' · ' + s.score + ' / 60 markah · ' + s.done + ' / ' + N + ' rumah · ' + s.stars + ' bintang · ' + s.tries + ' percubaan</span></div><div class="row"><button class="btn alt" type="button" id="closeD">TUTUP</button>' + (DEMO ? '' : '<button class="btn danger" type="button" id="delD">PADAM REKOD</button>') + '</div></div>';
+  h += '<h3>RUMUSAN PENGUASAAN KONSEP (PERCUBAAN PERTAMA)</h3><div class="tw"><table><thead><tr><th>Level</th><th>Predict</th><th>Observe</th><th>Explain</th><th>Catatan</th></tr></thead><tbody>';
+  const ic = b => b ? '✅' : '❌';
+  s.L.forEach((l, i) => { h += '<tr><td><b>Level ' + (i + 1) + '</b><br><span class="muted">' + esc(QB[i].t) + '</span></td>' + (l ? '<td>' + ic(l.first.predOk) + '</td><td>' + ic(l.first.obs) + '</td><td>' + ic(l.first.expOk) + '</td><td><span class="tag ' + l.p + '">' + esc(PAT[l.p] || '-').toUpperCase() + '</span><br>' + esc(NOTE[l.p] || '') + (l.n > 1 ? '<br><span class="muted">Jumlah percubaan: ' + l.n + (l.passed ? '. Lulus.' : '. Belum lulus.') + '</span>' : '') + '</td>' : '<td>—</td><td>—</td><td>—</td><td class="muted">Belum dicuba.</td>') + '</tr>'; });
+  h += '</tbody></table></div>';
+  s.lv.forEach((a, i) => { if (!a.length) return;
+    h += '<div class="lv-h"><h3 style="margin:0">LEVEL ' + (i + 1) + ': ' + esc(QB[i].t).toUpperCase() + '</h3><span class="muted">' + a.length + ' percubaan</span></div><div class="tw"><table><thead><tr><th>#</th><th>Masa</th><th>Predict</th><th>Observe</th><th>Explain</th><th>Petunjuk</th><th>Markah</th><th>Keputusan</th></tr></thead><tbody>';
+    a.forEach((r, k) => { h += '<tr><td class="n">' + (k + 1) + '</td><td class="n">' + fmtT(r.t) + '</td><td>' + ic(r.predOk) + ' ' + esc(ans(QB[i].p, r.pred)) + '</td><td>' + ic(r.obs) + '</td><td>' + ic(r.expOk) + ' ' + r.exp.split(';').map((x, j) => esc(ans(QB[i].e[j] || QB[i].e[0], x))).join('<br>') + '</td><td>' + (r.hint ? 'Ya (-1)' : 'Tidak') + '</td><td class="n">' + r.markah + '</td><td><span class="pill ' + (r.lulus ? 'ok">LULUS' : 'no">ULANG') + '</span></td></tr>'; });
+    h += '</tbody></table></div>'; });
+  $('detail').innerHTML = h + '</div>';
+  $('closeD').onclick = () => { openSid = null; $('detail').innerHTML = ''; };
+  const del = $('delD');
+  if (del) { let armed = false; del.onclick = async () => {
+    if (!armed) { armed = true; del.textContent = 'TEKAN LAGI UNTUK SAHKAN'; setTimeout(() => { armed = false; del.textContent = 'PADAM REKOD'; }, 4000); return; }
+    del.textContent = 'MEMADAM...';
+    const ids = RAW.filter(r => r.sid === s.sid).map(r => r.id);
+    try { const j = await post({action: 'delete', user: USER, key: KEY, ids}); if (j && j.ok) { RAW = RAW.filter(r => r.sid !== s.sid); openSid = null; render(); } else del.textContent = 'GAGAL'; }
+    catch (e) { del.textContent = 'GAGAL'; } }; }
+}
+
+function viewFeed(rows) {
+  if (!rows.length) return empty;
+  const R = rows.slice().sort((a, b) => b.t - a.t).slice(0, 60);
+  return '<div class="panel"><h2>AKTIVITI TERKINI</h2><p class="muted" style="margin:0 0 10px">60 percubaan terbaru. Hidupkan AUTO untuk memantau kelas secara langsung semasa sesi PdPc.</p><ul class="feed">'
+    + R.map(r => '<li class="' + (r.lulus ? 'ok' : 'no') + '"><time>' + fmtT(r.t) + '</time><div><b>' + esc(r.nama) + '</b> <span class="muted">(' + esc(r.kelas) + ')</span> · Level ' + r.level + ': ' + esc(QB[r.level - 1].t) + ' · percubaan ke-' + r.cubaan + '<br><span class="tag ' + pat(r) + '">' + esc(PAT[pat(r)] || '-').toUpperCase() + '</span></div><span class="pill ' + (r.lulus ? 'ok">LULUS +' + r.markah : 'no">ULANG') + '</span></li>').join('') + '</ul></div>';
+}
+
+/* ---------- CSV ---------- */
+$('csvBtn').onclick = () => {
+  const rows = filtered(), H = ['Masa', 'Nama', 'Kelas', 'Level', 'Tajuk level', 'Percubaan', 'Predict', 'Predict betul', 'Observe', 'Explain', 'Explain betul', 'Petunjuk', 'Markah', 'Lulus', 'Catatan'];
+  const q = v => { v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return /[",\n;]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  const yn = b => b ? 'Ya' : 'Tidak';
+  const lines = [H.join(',')].concat(rows.map(r => [r.t.toISOString(), r.nama, r.kelas, r.level, QB[r.level - 1].t, r.cubaan, r.pred, yn(r.predOk), yn(r.obs), r.exp, yn(r.expOk), yn(r.hint), r.markah, yn(r.lulus), r.catatan||NOTE[pat(r)]||''].map(q).join(',')));
+  const blob = new Blob(['﻿' + lines.join('\r\n')], {type: 'text/csv;charset=utf-8'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'rekod-misi-pak-ali-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+};
+
+/* ---------- Data demo ---------- */
+function demoRows() {
+  const names = ['Aminah Salleh', 'Hafiz Rahman', 'Tan Mei Ling', 'Arjun Kumar', 'Nurul Izzah', 'Daniel Lim', 'Siti Aisyah', 'Muhammad Irfan', 'Priya Devi', 'Wong Kar Hoe', 'Farah Nadia', 'Haikal Azmi', 'Lee Jia Wen', 'Aiman Hakim', 'Kavitha Rao', 'Nur Batrisyia', 'Chong Wei', 'Amir Syafiq', 'Balqis Huda', 'Ravi Shankar', 'Zara Sofea', 'Ikmal Hisham', 'Ong Li Ying', 'Syafiqah Ali'];
+  const pPred = [.55, .6, .45, .7, .75, .7], pExp = [.75, .6, .55, .7, .8, .75], out = []; let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const pickWrong = (q, bias) => { const w = q.o.map((_, i) => i).filter(i => i !== q.a); return rnd() < .6 ? w[bias % w.length] : w[Math.floor(rnd() * w.length)]; };
+  const t0 = Date.now() - 3 * 864e5;
+  names.forEach((nm, si) => {
+    const kelas = si % 2 ? '4 Cemerlang' : '4 Bestari', sid = 'demo-' + si, skill = .75 + rnd() * .5; let t = t0 + si * 9e5;
+    const reach = si % 7 === 0 ? 3 + Math.floor(rnd() * 3) : N;
+    for (let l = 0; l < reach; l++) {
+      for (let k = 1; k <= 4; k++) {
+        const q = QB[l], pOk = rnd() < pPred[l] * skill, eOk = rnd() < Math.min(.95, pExp[l] * skill * (k > 1 ? 1.35 : 1)), hint = eOk && rnd() < .15;
+        t += 4e5 + rnd() * 6e5;
+        out.push({id: sid + '-' + l + '-' + k, t: new Date(t), sesi: 's1', sid, nama: nm, kelas, level: l + 1, cubaan: k, pred: L5[pOk ? q.p.a : pickWrong(q.p, l)], predOk: pOk, obs: true,
+          exp: q.e.map(e => L5[eOk ? e.a : pickWrong(e, l + 1)]).join(';'), expOk: eOk, hint, markah: eOk ? (hint ? 9 : 10) : 0, lulus: eOk, catatan: ''});
+        if (eOk) break;
+        if (k === 4) return;
+      }
+    }
+  });
+  return out;
+}
+
+/* Kekal log masuk sepanjang tab ini dibuka */
+(async () => { const k = SS.get('pakali.adminKey'), u = SS.get('pakali.adminUser'); if (k && u && URL_) { KEY = k; USER = u; const r = await fetchData(); if (r === true) enter(false); else { SS.del('pakali.adminKey'); SS.del('pakali.adminUser'); } } })();
+</script>
+</body>
+</html>
