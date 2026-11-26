@@ -92,7 +92,7 @@ tr.click{cursor:pointer}tr.click:hover td{background:#252c5c}
     <label class="f">NAMA PENGGUNA<input id="usr" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Contoh: aminah"></label>
     <label class="f">KATA LALUAN<input id="pw" type="password" autocomplete="current-password"></label>
     <p class="err" id="loginErr" role="alert"></p>
-    <div class="row"><button class="btn" type="submit" id="loginBtn">MASUK</button><button class="btn alt" type="button" id="demoBtn">LIHAT DEMO</button><a class="btn alt" href="index.html">KE PERMAINAN</a></div>
+    <div class="row"><button class="btn" type="submit" id="loginBtn">MASUK</button><a class="btn alt" href="index.html">KE PERMAINAN</a></div>
   </form>
 </section>
 
@@ -161,7 +161,6 @@ $('loginForm').addEventListener('submit', async e => {
   if (r === true) { if (!SHEET_URL) LS.set('pakali.adminUrl', URL_); SS.set('pakali.adminKey', KEY); SS.set('pakali.adminUser', USER); $('pw').value = ''; $('loginErr').textContent = ''; enter(false); }
   else $('loginErr').textContent = r;
 });
-$('demoBtn').onclick = () => { RAW = demoRows(); DEMO = true; lastLoad = new Date(); enter(true); };
 $('logoutBtn').onclick = () => { SS.del('pakali.adminKey'); SS.del('pakali.adminUser'); KEY = ''; USER = ''; RAW = []; DEMO = false; stopAuto(); $('v-app').hidden = true; $('v-login').hidden = false; };
 
 async function post(body) {
